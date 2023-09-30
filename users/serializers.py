@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate
-from pkg_resources import _
 from rest_framework import serializers
 from .models import CustomUser
 from django.contrib.auth.hashers import make_password
@@ -30,10 +29,10 @@ class CustomAuthTokenSerializer(AuthTokenSerializer):
                                 username=login,
                                 password=password)
             if not user:
-                msg = _('Unable to log in with provided credentials.')
+                msg = 'Unable to log in with provided credentials.'
                 raise serializers.ValidationError(msg, code='authorization')
         else:
-            msg = _('Must include "login" and "password".')
+            msg = 'Must include "login" and "password".'
             raise serializers.ValidationError(msg, code='authorization')
 
         attrs['user'] = user
